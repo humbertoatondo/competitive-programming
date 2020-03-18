@@ -1,27 +1,38 @@
 #include <iostream>
-#include <set>
+#include <vector>
+#include <string>
 using namespace std;
 
 int n;
-string row;
-set<char> letters;
-int flag;
+string str;
+vector<string> v;
 
 int main() {
     cin >> n;
-    int s = 0;
-    int e = n-1;
     for (int i = 0; i < n; i++) {
-        cin >> row;
-        if (row[s] != row[e]) flag = 1;
-        for (int a = 0; a < n; a++) {
-            if (a != s && a != e)
-                letters.insert(row[a]);
-        }
-        s++;
-        e--;
+        cin >> str;
+        v.push_back(str);
     }
-    if (letters.size() == 1 && !flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
+
+    char x = v[0][0];
+    char o = v[1][0];
+    int i = 0;
+    int j = n - 1;
+    for (string s : v) {
+        if (s[i] != x || s[j] != x || x == o) {
+            cout << "NO" << endl;
+            return 0;
+        }
+        for (int k = 0; k < n; k++) {
+            if (i != k && j != k && s[k] != o) {
+                cout << "NO" << endl;
+                return 0;
+            }
+        }
+        i++;
+        j--;
+    }
+
+    cout << "YES" << endl;
     return 0;
 }
