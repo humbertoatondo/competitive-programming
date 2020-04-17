@@ -1,47 +1,37 @@
 #include <iostream>
 #include <vector>
-#include <set>
+#include <algorithm>
 using namespace std;
+using ull = unsigned long long;
 
-int n, vi, m, type, l, r;
-vector<long long int> v, cost;
-multiset<long long int> ms;
+int N, v, M, type, l, r;
+vector<ull> V, U, costs;
 
-int main()
-{
-    cin >> n;
-    cost.push_back(0);
-    while (n--)
+int main() {
+    cin >> N;
+    V.push_back(0);
+    costs.push_back(0);
+    while (N--)
     {
-        cin >> vi;
-        v.push_back(vi);
-        cost.push_back(cost.back() + vi);
-        auto loc = ms.insert(vi);
-        cout << *loc << endl;
+        cin >> v;
+        V.push_back(V.back() + v);
+        costs.push_back(v);
     }
 
-    cin >> m;
-    while (m--)
+    sort(costs.begin(), costs.end());
+    U.push_back(0);
+    for (int i = 1; i < costs.size(); i++) { U.push_back(U.back() + costs[i]); }
+    cin >> M;
+    while (M--)
     {
         cin >> type >> l >> r;
         if (type == 1)
         {
-            long long int t = cost[r] - cost[l - 1];
-            cout << t<< endl;
+            cout << V[r] - V[l - 1] << endl;
         }
         else
         {
-            long long int t = 0;
-            multiset<long long int>::iterator it = ms.begin();
-            l--;
-            advance(it, l);
-            while (l < r)
-            {
-                t += *it;
-                it++;
-                l++;
-            }
-            cout << t << endl;
+            cout << U[r] - U[l - 1] << endl;
         }
     }
     return 0;

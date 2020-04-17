@@ -9,6 +9,14 @@
         "iostream": "cpp",
         "utility": "cpp",
         "ostream": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "ios": "cpp",
+        "iomanip": "cpp",
+        "cmath": "cpp",
+        "unordered_set": "cpp",
+        "regex": "cpp",
+        "iosfwd": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp"
     }
 }
